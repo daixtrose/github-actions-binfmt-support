@@ -23,15 +23,15 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Prepare binftms 
-        run:
-          apt-get install -y \
+        run: |
+          sudo apt-get install -y \
           qemu \
           binfmt-support \
           qemu-user-static 
       - name: Add armhf architecture to multiarch configuration
-        run:
-          dpkg --add-architecture armhf && \
-          update-binfmts --enable     
+        run: |
+          sudo dpkg --add-architecture armhf 
+          sudo update-binfmts --enable     
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
