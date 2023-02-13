@@ -17,7 +17,7 @@ RUN apt-get update
 RUN apt-get install -y hello:armhf
 
 # make sure the things that have to run in the emulator are possible
-RUN update-binfmts --enable
+# RUN update-binfmts --enable
 
 # check if everything is set up correctly 
 RUN /usr/bin/hello 
