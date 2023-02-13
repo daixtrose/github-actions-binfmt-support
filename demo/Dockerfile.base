@@ -1,0 +1,17 @@
+FROM debian:11
+
+# Fetch updated package list
+RUN apt-get update && apt-get install -y
+
+# Install emulation tools
+RUN apt-get install -y \
+  qemu \
+  binfmt-support \
+  qemu-user-static 
+
+# Add "armhf" architecture to Debian multiarch configuration
+RUN dpkg --add-architecture armhf
+RUN apt-get update
+
+# Executable to verify ARM binary emulation is operating
+RUN apt-get install -y hello:armhf
